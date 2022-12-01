@@ -1,8 +1,24 @@
-$btn-font-family: 'Ink free';
+
 #header{
     background-image: url(./images/style2/myimage.png);
     background-repeat: repeat-x;
     background-position: 10px 10px;
+}
+
+.first-color { 
+	background: #f9e090; 
+}
+	
+.second-color { 
+	background: #ff935c; 
+}
+
+.third-color { 
+	background: #dc5353; 
+}
+
+.fourth-color { 
+	background: #a72461; 
 }
 
 @import "node_modules/bootstrap/scss/bootstrap.scss";
