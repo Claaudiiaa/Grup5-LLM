@@ -10,5 +10,4 @@ header.innerHTML = `
 </div>
 <!-- Copyright -->
 </footer>
-
 `;
