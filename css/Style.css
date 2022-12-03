@@ -1,9 +1,4 @@
 @charset "UTF-8";
-#header {
-  background-image: url(./images/style2/myimage.png);
-  background-repeat: repeat-x;
-}
-
 .first-color {
   background: #f9e090;
 }
@@ -19,7 +14,11 @@
 .fourth-color {
   background: #a72461;
 }
-
+/*
+header {
+  background-image: url("https://japanjourneys.jp/wp-content/uploads/2019/09/capybara-onsen-header-retouched.jpg");
+}
+*/
 /*!
  * Bootstrap  v5.2.3 (https://getbootstrap.com/)
  * Copyright 2011-2022 The Bootstrap Authors
