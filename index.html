@@ -6,49 +6,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="Pàgina1/plantilla_pagina1.js"></script>
-  <link href="Pàgina1/Style.css" rel="stylesheet" type="text/css">
-  
+  <script src="plantilla_pagina1.js" type="text/javascript" defer></script>
+  <link href="Pagina1/Style.css" rel="stylesheet" type="text/css">
+
   <title>Document</title>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
-      aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
 
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="Pagina2/index.html">Pàgina 2</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="Pagina3/index.html">Disabled</a>
-        </li>
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
-    </div>
-  </nav>
   <header>
-
-
     <!-- Background image -->
     <div class="p-5 text-center bg-image" style="
         background-image: url('https://img.remediosdigitales.com/48577f/mallard-4414758_1280/1366_521.jpg');
         ">
       <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
-        <div class="d-flex justify-content-center align-items-center h-100">
+        <div class="d-flex justify-content-center align-items-center">
           <div class="text-white">
-            <h1 class="mb-3">Patos uwu</h1>
+            <h1 class="mb-3">Animals</h1>
 
           </div>
         </div>
@@ -58,14 +32,44 @@
     </div>
     <!-- Background image -->
   </header>
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark ">
+    <div class="container-fluid mx-5">
 
-  <!-- Background image -->
-  </header>
+      <a class="navbar-brand" href="index.html">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-house-fill"
+          viewBox="0 0 16 16">
+          <path
+            d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5Z" />
+          <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6Z" />
+        </svg>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mynavbar">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="Pagina1/index.html">Ànecs</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Pagina2/index.html">Axolot</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Pagina3/index.html">Gats</a>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="text" placeholder="Search">
+          <button class="btn btn-primary" type="button">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
   <content>
     <div class="row">
       <div class="col col-6  m-5">
         <strong>What is Lorem Ipsum? <br></strong>
-        
+
 
         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
         standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
@@ -87,7 +91,7 @@
       </div>
       <div class="col col-4 m-5">
         <strong>Where does it come from?<br></strong>
-        
+
 
         Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin
         literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney
@@ -100,14 +104,14 @@
         The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections
         1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original
         form, accompanied by English versions from the 1914 translation by H. Rackham. <br>
-        
+
       </div>
 
 
     </div>
   </content>
 
-  <div id="footer1"></div>
+  <div id="footer"></div>
 </body>
 
 </html>
