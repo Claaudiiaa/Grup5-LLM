@@ -1,6 +1,4 @@
-div{
-	text-align: justify;
-}
+
 
 .first-color { 
 	background: #f9e090; 
@@ -18,7 +16,5 @@ div{
 	background: #a72461; 
 }
 
-header{
-	background-image: url("https://japanjourneys.jp/wp-content/uploads/2019/09/capybara-onsen-header-retouched.jpg");
-}
-@import "node_modules/bootstrap/scss/bootstrap.scss";
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
