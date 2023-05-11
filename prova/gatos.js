@@ -4,17 +4,21 @@ const apiKey = '&api_key=live_QQWpmJhqpdymyzFNsookBeZbfMbKtFUW5qZOsoPtoAsWAKmzFC
 const apiImages = 'https://api.thecatapi.com/v1/images/search?';
 const apiContent = 'https://api.thecatapi.com/v1/breeds';
 
-fetch('https://api.thecatapi.com/v1/breeds')
+fetch(apiContent)
     .then(response => response.json())
     .then(data => {
         const select = document.createElement('select');
         let gatId, nom, imgId;
+        const originPlaces = [];
         data.forEach(gat => {
-            const option = document.createElement('option');
-            option.value = gat.id;
-            option.textContent = gat.name;
-            option.setAttribute('data-img-id', gat.reference_image_id);
-            select.appendChild(option);
+            if (!originPlaces.includes(gat.origin)) {
+                originPlaces.push(gat.origin);
+                const option = document.createElement('option');
+                option.value = gat.origin;
+                option.textContent = gat.origin;
+                option.setAttribute('data-img-id', gat.reference_image_id);
+                select.appendChild(option);
+            }
         });
         selectDiv.appendChild(select);
 
@@ -31,14 +35,18 @@ function buscar(imgId, nom, gatId) {
     fetch(apiContent)
         .then(response => response.json())
         .then(json => {
-            const filtered = json.filter(cat => cat.id == gatId);
+            const filtered = json.filter(cat => cat.origin == gatId);
             content.innerHTML = '';
             filtered.forEach(cat => {
                 const item = document.createElement('li');
-                item.textContent = `Cat ID: ${gatId} Cat Name: ${nom} Cat Origin: ${cat.origin} Desc: ${cat.description}`;
+                item.textContent = `Cat ID: ${cat.id} Cat Name: ${cat.name} Cat Origin: ${cat.origin} Desc: ${cat.description}`;
                 content.appendChild(item);
+                buscarImg(cat.reference_image_id)
             });
         });
+    
+}
+function buscarImg(imgId){
     fetch(`${apiImages}${imgId}${apiKey}`)
         .then(response => response.json())
         .then(json => {
