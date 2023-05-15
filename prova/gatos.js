@@ -32,21 +32,21 @@ fetch(apiContent)
     });
 
 function buscar(imgId, nom, gatId) {
-    fetch(apiContent)
+    fetch(`${apiImages}breed_id=${gatId}${apiKey}`)
         .then(response => response.json())
         .then(json => {
-            const filtered = json.filter(cat => cat.origin == gatId);
+            const filtered = json.filter(cat => cat.catId == gatId);
             content.innerHTML = '';
             filtered.forEach(cat => {
                 const item = document.createElement('li');
-                item.textContent = `Cat ID: ${cat.id} Cat Name: ${cat.name} Cat Origin: ${cat.origin} Desc: ${cat.description}`;
+                item.textContent = `Cat ID: ${cat.breeds[0].id} Cat Name: ${cat.name} Cat Origin: ${cat.origin} Desc: ${cat.description}`;
                 content.appendChild(item);
                 buscarImg(cat.reference_image_id)
             });
         });
-    
 }
-function buscarImg(imgId){
+
+function buscarImg(imgId) {
     fetch(`${apiImages}${imgId}${apiKey}`)
         .then(response => response.json())
         .then(json => {
