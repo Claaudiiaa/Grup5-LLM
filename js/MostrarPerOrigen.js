@@ -1,5 +1,5 @@
-const selectDiv = document.getElementById('prova');
-const content = document.getElementById('content');
+const selectDiv = document.getElementById('selector');
+const content = document.getElementById('contenidorOrigen');
 const apiKey = '&api_key=live_QQWpmJhqpdymyzFNsookBeZbfMbKtFUW5qZOsoPtoAsWAKmzFComC6WXHxLkg2kx';
 const apiImages = 'https://api.thecatapi.com/v1/images/search?';
 const apiContent = 'https://api.thecatapi.com/v1/breeds';
@@ -30,40 +30,8 @@ fetch(apiContent)
             buscar(imgId, nom, gatId);
         });
     });
-/*
-function buscar(id, nom) {
 
-
-    fetch(apiContent)
-        .then(response => response.json())
-        .then(albums => {
-
-            albums.forEach(album => {
-                const fotosUl = document.createElement("ul");
-                const item = document.createElement('li');
-                item.textContent = `Cat ID: ${cat.id} Cat Name: ${cat.name} Cat Origin: ${cat.origin} Desc: ${cat.description}`;
-                content.appendChild(item);
-
-                
-                fetch(`${apiImages}${imgId}${apiKey}`)
-                    .then(response => response.json())
-                    .then(fotos => {
-                        fotos.forEach(foto => {
-                            const fotosLi = document.createElement("li");
-                            fotosLi.innerHTML = `<strong> ${foto.title}</strong><br>
-                    <img src="${foto.url}" alt="${foto.title}">`;
-                            fotosUl.appendChild(fotosLi);
-                        });
-                    });
-
-                li.appendChild(fotosUl);
-                div.appendChild(li);
-            });
-        });
-}
-*/
-
-function buscar(imgId, nom, gatId) {
+function buscar(imgId, gatId) {
     fetch(apiContent)
         .then(response => response.json())
         .then(json => {
