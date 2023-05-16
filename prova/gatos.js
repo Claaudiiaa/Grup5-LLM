@@ -112,7 +112,7 @@ function buscar(imgId, gatId) {
             console.log("Breed Name:", breedName);
             console.log("Breed Description:", breedDescription);
             console.log("Breed Image URL:", breedImageURL);
-
+//aixo d'aqui mostra les dades per terminal fara falta passar-ho a lo de avaix
             const filtered = json.filter(cat => cat.origin == gatId);
             content.innerHTML = '';
             filtered.forEach(cat => {
