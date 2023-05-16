@@ -51,21 +51,8 @@ function buscar(imgId, gatId) {
                     });
 
                 content.appendChild(item);
+                
+                content.appendChild(`<br>`);
             });
-        });
-}
-
-function buscarImg(imgId) {
-    fetch(`${apiImages}${imgId}${apiKey}`)
-        .then(response => response.json())
-        .then(json => {
-            const item = document.createElement('div'); // Cambiamos de <li> a <div>
-            const text = document.createElement('p');
-            text.textContent = `Cat ID: ${json[0].id} Cat Name: ${json[0].name} Cat Origin: ${json[0].origin} Desc: ${json[0].description}`;
-            const image = document.createElement('img');
-            image.src = json[0].url;
-            item.appendChild(text);
-            item.appendChild(image);
-            content.appendChild(item);
         });
 }
