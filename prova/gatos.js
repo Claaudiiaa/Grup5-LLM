@@ -1,3 +1,122 @@
+const selectDiv = document.getElementById('prova');
+const content = document.getElementById('content');
+const apiKey = 'QQWpmJhqpdymyzFNsookBeZbfMbKtFUW5qZOsoPtoAsWAKmzFComC6WXHxLkg2kx';
+const apiImages = 'https://api.thecatapi.com/v1/images/search?';
+const apiContent = 'https://api.thecatapi.com/v1/breeds';
+
+fetch(apiContent)
+  .then(response => response.json())
+  .then(data => {
+    const select = document.createElement('select');
+    data.forEach(gat => {
+      const option = document.createElement('option');
+      option.value = gat.id;
+      option.textContent = gat.name;
+      option.setAttribute('data-img-id', gat.reference_image_id);
+      select.appendChild(option);
+    });
+    selectDiv.appendChild(select);
+
+    select.addEventListener('change', function() {
+      const selectedOption = this.options[this.selectedIndex];
+      const gatId = selectedOption.value;
+      const nom = selectedOption.textContent;
+      const imgId = selectedOption.getAttribute('data-img-id');
+      buscar(imgId, gatId);
+    });
+  });
+
+function buscar(imgId, gatId) {
+  const link = `${apiImages}breed_id=${gatId}&api_key=${apiKey}`;
+  fetch(link)
+    .then(response => response.json())
+    .then(data => {
+      content.innerHTML = '';
+      console.log('Number of Cats:', data.length);
+
+      data.forEach(cat => {
+        const item = document.createElement('div');
+        const breedName = cat.breeds[0].name;
+        const breedDescription = cat.breeds[0].description;
+        const breedImageURL = cat.url;
+        item.textContent = `Breed Name: ${breedName} Breed Description: ${breedDescription} Breed Image URL: ${breedImageURL}`;
+
+        content.appendChild(item);
+        content.appendChild(document.createElement('br'));
+      });
+    });
+}
+
+
+
+/*fetch(apiContent)
+    .then(response => response.json())
+    .then(data => {
+        const select = document.createElement('select');
+        let gatId, nom, imgId;
+        const originPlaces = [];
+        data.forEach(gat => {
+            if (!originPlaces.includes(gat.origin)) {
+                originPlaces.push(gat.origin);
+                const option = document.createElement('option');
+                option.value = gat.origin;
+                option.textContent = gat.origin;
+                option.setAttribute('data-img-id', gat.reference_image_id);
+                select.appendChild(option);
+            }
+        });
+        selectDiv.appendChild(select);
+
+        select.addEventListener('change', function () {
+            const selectedOption = this.options[this.selectedIndex];
+            gatId = selectedOption.value;
+            nom = selectedOption.textContent;
+            imgId = selectedOption.getAttribute('data-img-id');
+            buscar(imgId, nom, gatId);
+        });
+    });
+
+function buscar(imgId, gatId) {
+    fetch(apiContent)
+        .then(response => response.json())
+        .then(data => {
+            const link = `${apiImages}breed_id=aege${apiKey}`;
+            return fetch(link);
+        })
+        .then(response => response.json())
+        .then(data => {
+
+            //aixo d'aqui mostra les dades per terminal fara falta passar-ho a lo de avaix
+            const filtered = data.filter(cat => cat.origin == gatId);
+            content.innerHTML = '';
+            filtered.forEach(cat => {
+                console.log(cat.lenght)
+                const item = document.createElement('div');
+                const breedData = cat.breeds[0];
+                const breedName = breedData.name;
+                const breedDescription = breedData.description;
+                const breedImageURL = cat.url;
+                item.textContent = `Breed Name: ${breedName} Breed Description: ${breedDescription} Breed Image URL: ${breedImageURL}`
+                console.log("Breed Name:", breedName);
+                console.log("Breed Description:", breedDescription);
+                console.log("Breed Image URL:", breedImageURL);
+                /*item.textContent = `Cat ID: ${cat.id} \nCat Name: ${cat.name} \nCat Origin: ${cat.origin} \nDesc: ${cat.description}`;
+                content.appendChild(item2)
+                // Agregamos la imagen después del texto
+                fetch(`${apiImages}${imgId}${apiKey}`)
+                    .then(response => response.json())
+                    .then(json => {
+                        const image = document.createElement('img');
+                        image.src = json[0].url;
+                        item.appendChild(image);
+                    });
+
+                content.appendChild(item);
+
+                content.appendChild(`br`);
+            });
+        });
+}*/
 /*const selectDiv = document.getElementById('prova');
 const content = document.getElementById('content');
 const apiKey = '&api_key=live_QQWpmJhqpdymyzFNsookBeZbfMbKtFUW5qZOsoPtoAsWAKmzFComC6WXHxLkg2kx';
@@ -61,78 +180,3 @@ var breedImageURL = data[0].url;
 console.log("Breed Name:", breedName);
 console.log("Breed Description:", breedDescription);
 console.log("Breed Image URL:", breedImageURL);*/
-
-const selectDiv = document.getElementById('prova');
-const content = document.getElementById('content');
-const apiKey = '&api_key=live_QQWpmJhqpdymyzFNsookBeZbfMbKtFUW5qZOsoPtoAsWAKmzFComC6WXHxLkg2kx';
-const apiImages = 'https://api.thecatapi.com/v1/images/search?';
-const apiContent = 'https://api.thecatapi.com/v1/breeds';
-
-fetch(apiContent)
-    .then(response => response.json())
-    .then(data => {
-        const select = document.createElement('select');
-        let gatId, nom, imgId;
-        const originPlaces = [];
-        data.forEach(gat => {
-            if (!originPlaces.includes(gat.origin)) {
-                originPlaces.push(gat.origin);
-                const option = document.createElement('option');
-                option.value = gat.origin;
-                option.textContent = gat.origin;
-                option.setAttribute('data-img-id', gat.reference_image_id);
-                select.appendChild(option);
-            }
-        });
-        selectDiv.appendChild(select);
-
-        select.addEventListener('change', function () {
-            const selectedOption = this.options[this.selectedIndex];
-            gatId = selectedOption.value;
-            nom = selectedOption.textContent;
-            imgId = selectedOption.getAttribute('data-img-id');
-            buscar(imgId, nom, gatId);
-        });
-    });
-
-function buscar(imgId, gatId) {
-    fetch(apiContent)
-        .then(response => response.json())
-        .then(data => {
-            const link = `${apiImages}breed_id=aege${apiKey}`;
-            return fetch(link);
-        })
-        .then(response => response.json())
-        .then(data => {
-            const breedData = data[0].breeds[0];
-            const breedName = breedData.name;
-            const breedDescription = breedData.description;
-            const breedImageURL = data[0].url;
-            const item2 = document.createElement('div');
-            item2.textContent =`Breed Name: ${breedName} Breed Description: ${breedDescription} Breed Image URL: ${breedImageURL}` 
-            console.log("Breed Name:", breedName);
-            console.log("Breed Description:", breedDescription);
-            console.log("Breed Image URL:", breedImageURL);
-//aixo d'aqui mostra les dades per terminal fara falta passar-ho a lo de avaix
-            const filtered = json.filter(cat => cat.origin == gatId);
-            content.innerHTML = '';
-            filtered.forEach(cat => {
-                const item = document.createElement('div');
-
-                item.textContent = `Cat ID: ${cat.id} \nCat Name: ${cat.name} \nCat Origin: ${cat.origin} \nDesc: ${cat.description}`;
-                content.appendChild(item2)
-                // Agregamos la imagen después del texto
-                fetch(`${apiImages}${imgId}${apiKey}`)
-                    .then(response => response.json())
-                    .then(json => {
-                        const image = document.createElement('img');
-                        image.src = json[0].url;
-                        item.appendChild(image);
-                    });
-
-                content.appendChild(item);
-
-                content.appendChild(`br`);
-            });
-        });
-}
