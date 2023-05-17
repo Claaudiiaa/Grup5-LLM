@@ -100,11 +100,20 @@ header {
 *::after {
   box-sizing: border-box;
 }
-
+img{
+  width: 400px;
+}
 @media (prefers-reduced-motion: no-preference) {
   :root {
     scroll-behavior: smooth;
   }
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }
 
 body {

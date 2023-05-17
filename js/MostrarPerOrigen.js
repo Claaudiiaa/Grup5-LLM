@@ -39,8 +39,8 @@ function buscar(imgId, gatId) {
             content.innerHTML = '';
             filtered.forEach(cat => {
                 const item = document.createElement('div'); // Cambiamos de <li> a <div>
-                item.textContent = `Cat ID: ${cat.id} Cat Name: ${cat.name} Cat Origin: ${cat.origin} Desc: ${cat.description}`;
-
+                item.textContent = `Cat Name: ${cat.name} \nCat Origin: ${cat.origin} Desc: ${cat.description}`;
+                item.innerHTML += `<br>`
                 // Agregamos la imagen después del texto
                 fetch(`${apiImages}${imgId}${apiKey}`)
                     .then(response => response.json())
@@ -52,7 +52,6 @@ function buscar(imgId, gatId) {
 
                 content.appendChild(item);
                 
-                content.appendChild(`<br>`);
             });
         });
 }

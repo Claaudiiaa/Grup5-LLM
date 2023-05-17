@@ -108,7 +108,8 @@ function buscar(imgId, gatId) {
             const breedName = breedData.name;
             const breedDescription = breedData.description;
             const breedImageURL = data[0].url;
-
+            const item2 = document.createElement('div');
+            item2.textContent =`Breed Name: ${breedName} Breed Description: ${breedDescription} Breed Image URL: ${breedImageURL}` 
             console.log("Breed Name:", breedName);
             console.log("Breed Description:", breedDescription);
             console.log("Breed Image URL:", breedImageURL);
@@ -118,8 +119,8 @@ function buscar(imgId, gatId) {
             filtered.forEach(cat => {
                 const item = document.createElement('div');
 
-                item.textContent = `Cat ID: ${cat.id} Cat Name: ${cat.name} Cat Origin: ${cat.origin} Desc: ${cat.description}`;
-
+                item.textContent = `Cat ID: ${cat.id} \nCat Name: ${cat.name} \nCat Origin: ${cat.origin} \nDesc: ${cat.description}`;
+                content.appendChild(item2)
                 // Agregamos la imagen después del texto
                 fetch(`${apiImages}${imgId}${apiKey}`)
                     .then(response => response.json())
