@@ -1,5 +1,4 @@
-const selectDiv = document.getElementById('selector');
-const content = document.getElementById('contenidorOrigen');
+const content = document.getElementById('contenidorInfo');
 const apiKey = '&api_key=live_QQWpmJhqpdymyzFNsookBeZbfMbKtFUW5qZOsoPtoAsWAKmzFComC6WXHxLkg2kx';
 const apiImages = 'https://api.thecatapi.com/v1/images/search?';
 const apiContent = 'https://api.thecatapi.com/v1/breeds';
@@ -7,7 +6,6 @@ const apiContent = 'https://api.thecatapi.com/v1/breeds';
 fetch(apiContent)
   .then(response => response.json())
   .then(data => {
-    console.log(data); // Aquí puedes hacer lo que desees con los datos de las razas de gatos
     
     let breedsContainer = document.createElement('div');
     data.forEach(breed => {
@@ -16,7 +14,7 @@ fetch(apiContent)
         
         // Agregar introducción antes de la imagen
         let intro = document.createElement('p');
-        intro.textContent = `Introducción de la raza ${breed.name}`;
+        intro.textContent = breed.name;
         breedItem.appendChild(intro);
         
         fetch(`${apiImages}${breed.id}${apiKey}`)
@@ -32,5 +30,5 @@ fetch(apiContent)
     });
 
     // Agregar el contenedor de razas al documento
-    document.body.appendChild(breedsContainer);
+    document.content.appendChild(breedsContainer);
   });
