@@ -1,57 +1,67 @@
-const selectDiv = document.getElementById('prova');
-const content = document.getElementById('content');
-const apiKey = '&api_key=live_QQWpmJhqpdymyzFNsookBeZbfMbKtFUW5qZOsoPtoAsWAKmzFComC6WXHxLkg2kx';
-const apiImages = 'https://api.thecatapi.com/v1/images/search?';
-const apiContent = 'https://api.thecatapi.com/v1/breeds';
+const breedSelect = document.getElementById('breedSelect');
+const breedInfo = document.getElementById('breedInfo');
+const breedImage = document.getElementById('breedImage');
+const origin = document.getElementById('origin');
+const description = document.getElementById('description');
+const affectionLevel = document.getElementById('affectionLevel');
+const adaptability = document.getElementById('adaptability');
+const childFriendly = document.getElementById('childFriendly');
+const dogFriendly = document.getElementById('dogFriendly');
+const energyLevel = document.getElementById('energyLevel');
+const grooming = document.getElementById('grooming');
+const healthIssues = document.getElementById('healthIssues');
+const intelligence = document.getElementById('intelligence');
+const sheddingLevel = document.getElementById('sheddingLevel');
+const socialNeeds = document.getElementById('socialNeeds');
+const strangerFriendly = document.getElementById('strangerFriendly');
+const vocalisation = document.getElementById('vocalisation');
+const wikipediaLink = document.getElementById('wikipediaLink');
 
-fetch(apiContent)
-    .then(response => response.json())
-    .then(data => {
-        const select = document.createElement('select');
-        let gatId, nom, imgId;
-        const originPlaces = [];
-        data.forEach(gat => {
-            if (!originPlaces.includes(gat.origin)) {
-                originPlaces.push(gat.origin);
-                const option = document.createElement('option');
-                option.value = gat.origin;
-                option.textContent = gat.origin;
-                option.setAttribute('data-img-id', gat.reference_image_id);
-                select.appendChild(option);
-            }
+async function getBreeds() {
+    try {
+        const response = await fetch('https://api.thecatapi.com/v1/breeds/');
+        const data = await response.json();
+        data.forEach(breed => {
+            const option = document.createElement('option');
+            option.value = breed.id;
+            option.text = breed.name;
+            breedSelect.appendChild(option);
         });
-        selectDiv.appendChild(select);
-
-        select.addEventListener('change', function () {
-            const selectedOption = this.options[this.selectedIndex];
-            gatId = selectedOption.value;
-            nom = selectedOption.textContent;
-            imgId = selectedOption.getAttribute('data-img-id');
-            buscar(imgId, nom, gatId);
-        });
-    });
-
-function buscar(imgId, nom, gatId) {
-    fetch(`${apiImages}breed_id=${gatId}${apiKey}`)
-        .then(response => response.json())
-        .then(json => {
-            const filtered = json.filter(cat => cat.catId == gatId);
-            content.innerHTML = '';
-            filtered.forEach(cat => {
-                const item = document.createElement('li');
-                item.textContent = `Cat ID: ${cat.breeds[0].id} Cat Name: ${cat.name} Cat Origin: ${cat.origin} Desc: ${cat.description}`;
-                content.appendChild(item);
-                buscarImg(cat.reference_image_id)
-            });
-        });
+    } catch (error) {
+        console.error(error);
+    }
 }
 
-function buscarImg(imgId) {
-    fetch(`${apiImages}${imgId}${apiKey}`)
-        .then(response => response.json())
-        .then(json => {
-            const item = document.createElement('img');
-            item.src = json[0].url;
-            content.appendChild(item);
-        });
+async function getBreedInfo() {
+    const selectedBreedId = breedSelect.value;
+    if (selectedBreedId) {
+        try {
+            const response = await fetch(`https://api.thecatapi.com/v1/breeds/${selectedBreedId}`);
+            const data = await response.json();
+            breedInfo.style.display = 'block';
+            breedImage.src = data.image.url;
+            breedImage.alt = data.name;
+            origin.textContent = data.origin;
+            description.textContent = data.description;
+            affectionLevel.textContent = data.affection_level;
+            adaptability.textContent = data.adaptability;
+            childFriendly.textContent = data.child_friendly;
+            dogFriendly.textContent = data.dog_friendly;
+            energyLevel.textContent = data.energy_level;
+            grooming.textContent = data.grooming;
+            healthIssues.textContent = data.health_issues;
+            intelligence.textContent = data.intelligence;
+            sheddingLevel.textContent = data.shedding_level;
+            socialNeeds.textContent = data.social_needs;
+            strangerFriendly.textContent = data.stranger_friendly;
+            vocalisation.textContent = data.vocalisation;
+            wikipediaLink.href = data.wikipedia_url;
+        } catch (error) {
+            console.error(error);
+        }
+    } else {
+        breedInfo.style.display = 'none';
+    }
 }
+
+getBreeds();
