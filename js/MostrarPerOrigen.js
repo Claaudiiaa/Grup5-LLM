@@ -38,10 +38,10 @@ function buscar(imgId, gatId) {
             const filtered = json.filter(cat => cat.origin == gatId);
             content.innerHTML = '';
             filtered.forEach(cat => {
-                const item = document.createElement('div'); // Cambiamos de <li> a <div>
+                const item = document.createElement('div'); 
                 item.textContent = `Cat Name: ${cat.name} \nCat Origin: ${cat.origin} Desc: ${cat.description}`;
                 item.innerHTML += `<br>`
-                // Agregamos la imagen después del texto
+                
                 fetch(`${apiImages}${imgId}${apiKey}`)
                     .then(response => response.json())
                     .then(json => {
