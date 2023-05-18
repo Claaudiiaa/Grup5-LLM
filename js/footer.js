@@ -1,4 +1,4 @@
-var footer = document.getElementById("footer");
+var footer = document.getElementById('footer');
 footer.innerHTML = `
 <footer
           class="text-center text-lg-start text-white"
