@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cat Breed Information</title>
 </head>
+
 <body>
     <h1>Cat Breed Information</h1>
     <div id="selectDiv"></div>
@@ -32,78 +33,7 @@
         <p><a id="wikipediaLink" href="" target="_blank">Learn more on Wikipedia</a></p>
     </div>
 
-    <script>
-        const selectDiv = document.getElementById('selectDiv');
-        const breedInfo = document.getElementById('breedInfo');
-        const breedImage = document.getElementById('breedImage');
-        const origin = document.getElementById('origin');
-        const description = document.getElementById('description');
-        const affectionLevel = document.getElementById('affectionLevel');
-        const adaptability = document.getElementById('adaptability');
-        const childFriendly = document.getElementById('childFriendly');
-        const dogFriendly = document.getElementById('dogFriendly');
-        const energyLevel = document.getElementById('energyLevel');
-        const grooming = document.getElementById('grooming');
-        const healthIssues = document.getElementById('healthIssues');
-        const intelligence = document.getElementById('intelligence');
-        const sheddingLevel = document.getElementById('sheddingLevel');
-        const socialNeeds = document.getElementById('socialNeeds');
-        const strangerFriendly = document.getElementById('strangerFriendly');
-        const vocalisation = document.getElementById('vocalisation');
-        const wikipediaLink = document.getElementById('wikipediaLink');
-
-        fetch('https://api.thecatapi.com/v1/breeds/')
-            .then(response => response.json())
-            .then(data => {
-                const select = document.createElement('select');
-                let gatId, nom, imgId;
-                data.forEach(gat => {
-                    const option = document.createElement('option');
-                    option.value = gat.id;
-                    option.textContent = gat.name;
-                    select.appendChild(option);
-                });
-                selectDiv.appendChild(select);
-
-                select.addEventListener('change', function () {
-                    const selectedOption = this.options[this.selectedIndex];
-                    gatId = selectedOption.value;
-                    nom = selectedOption.textContent;
-                    // buscar(imgId, nom, gatId);
-                    console.log(gatId);
-                    getBreedInfo(gatId);
-                });
-            });
-
-        function getBreedInfo(selectedBreedId) {
-            if (selectedBreedId) {
-                fetch(`https://api.thecatapi.com/v1/breeds/${selectedBreedId}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        breedInfo.style.display = 'block';
-                        idImage = data.reference_image_id;
-                        breedImage.alt = data.name;
-                        origin.textContent = data.origin;
-                        description.textContent = data.description;
-                        affectionLevel.textContent = data.affection_level;
-                        adaptability.textContent = data.adaptability;
-                        childFriendly.textContent = data.child_friendly;
-                        dogFriendly.textContent = data.dog_friendly;
-                        energyLevel.textContent = data.energy_level;
-                        grooming.textContent = data.grooming;
-                        healthIssues.textContent = data.health_issues;
-                        intelligence.textContent = data.intelligence;
-                        sheddingLevel.textContent = data.shedding_level;
-                        socialNeeds.textContent = data.social_needs;
-                        strangerFriendly.textContent = data.stranger_friendly;
-                        vocalisation.textContent = data.vocalisation;
-                        wikipediaLink.href = data.wikipedia_url;
-                    })
-            } else {
-                breedInfo.style.display = 'none';
-            }
-        }
-    </script>
+    <script src="gatos.js"></script>
 </body>
 
 </html>
