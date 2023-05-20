@@ -31,5 +31,5 @@ fetch(apiContent)
     });
 
     // Agregar el contenedor de razas al documento
-    document.body.appendChild(breedsContainer);
+    content.appendChild(breedsContainer);
   });
