@@ -10,6 +10,10 @@ fetch(apiContent)
         const select = document.createElement('select');
         let gatId, nom, imgId;
         const originPlaces = [];
+        const label = document.createElement('label');
+        label.textContent = "Seleccionar origen: ";
+        selectDiv.appendChild(label);
+
         data.forEach(gat => {
             if (!originPlaces.includes(gat.origin)) {
                 originPlaces.push(gat.origin);
@@ -17,11 +21,13 @@ fetch(apiContent)
                 option.value = gat.origin;
                 option.textContent = gat.origin;
                 option.setAttribute('data-img-id', gat.reference_image_id);
+                
                 select.appendChild(option);
             }
         });
-        selectDiv.appendChild(select);
 
+        selectDiv.appendChild(select);
+        
         select.addEventListener('change', function () {
             const selectedOption = this.options[this.selectedIndex];
             gatId = selectedOption.value;
@@ -36,11 +42,11 @@ function buscar(imgId, gatId) {
         .then(response => response.json())
         .then(json => {
             const filtered = json.filter(cat => cat.origin == gatId);
+            
             content.innerHTML = '';
             filtered.forEach(cat => {
                 const item = document.createElement('div'); 
-                item.textContent = `Cat Name: ${cat.name} \nCat Origin: ${cat.origin} Desc: ${cat.description}`;
-                item.innerHTML += `<br>`
+                item.innerHTML = `Nom: ${cat.name}<br>Origen: ${cat.origin}<br>Descripcio: ${cat.description}<br>`;
                 
                 fetch(`${apiImages}${imgId}${apiKey}`)
                     .then(response => response.json())

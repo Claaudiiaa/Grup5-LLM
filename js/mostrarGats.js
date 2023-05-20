@@ -27,8 +27,9 @@ fetch(apiContent)
         
         // Agregar el elemento de lista al contenedor de razas
         breedsContainer.appendChild(breedItem);
+        
     });
 
     // Agregar el contenedor de razas al documento
-    document.content.appendChild(breedsContainer);
+    document.body.appendChild(breedsContainer);
   });

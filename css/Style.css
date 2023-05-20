@@ -14,7 +14,10 @@
 .fourth-color {
   background: #a72461;
 }
-
+#footer{
+  position: relative;
+  bottom: 0;
+}
 /*
 header {
   background-image: url("https://japanjourneys.jp/wp-content/uploads/2019/09/capybara-onsen-header-retouched.jpg");
@@ -100,9 +103,6 @@ header {
 *::after {
   box-sizing: border-box;
 }
-img{
-  width: 400px;
-}
 @media (prefers-reduced-motion: no-preference) {
   :root {
     scroll-behavior: smooth;
@@ -112,12 +112,15 @@ img{
   margin: 100px;
 }
 footer {
-  position: relative;
   left: 0;
   bottom: 0;
   width: 100%;
 }
-
+#origen{
+  width: 400px;
+  position: relative;
+  margin: 0 auto;
+}
 body {
   margin: 0;
   font-family: var(--bs-body-font-family);
@@ -146,6 +149,14 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
   line-height: 1.2;
 }
 
+img{
+  width: 400px;
+  margin-right: 10px;
+  position: auto;
+  display: block;
+  margin-right: 20px; /* Espacio de margen entre la imagen y el contenido */
+
+}
 h1, .h1 {
   font-size: calc(1.375rem + 1.5vw);
 }
@@ -154,7 +165,12 @@ h1, .h1 {
     font-size: 2.5rem;
   }
 }
-
+select{
+  border-radius: 15px;
+}
+select:hover{
+  background-color: rgb(221, 214, 214);
+}
 h2, .h2 {
   font-size: calc(1.325rem + 0.9vw);
 }
