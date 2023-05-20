@@ -42,7 +42,6 @@ function buscar(imgId, gatId) {
         .then(response => response.json())
         .then(json => {
             const filtered = json.filter(cat => cat.origin == gatId);
-            
             content.innerHTML = '';
             filtered.forEach(cat => {
                 const item = document.createElement('div'); 

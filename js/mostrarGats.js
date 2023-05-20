@@ -9,12 +9,11 @@ fetch(apiContent)
     
     let breedsContainer = document.createElement('div');
     data.forEach(breed => {
-        // Crear un elemento de lista para cada raza
+
         let breedItem = document.createElement('div');
-        
-        // Agregar introducción antes de la imagen
         let intro = document.createElement('p');
-        intro.textContent = breed.name;
+
+        intro.textContent = `--> ${breed.name}`;
         breedItem.appendChild(intro);
         
         fetch(`${apiImages}${breed.id}${apiKey}`)
@@ -25,11 +24,9 @@ fetch(apiContent)
             breedItem.appendChild(image);
           });
         
-        // Agregar el elemento de lista al contenedor de razas
         breedsContainer.appendChild(breedItem);
         
     });
 
-    // Agregar el contenedor de razas al documento
     content.appendChild(breedsContainer);
   });

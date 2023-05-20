@@ -109,17 +109,25 @@ header {
   }
 }
 #contenidorInfo{
-  margin: 100px;
+  margin: 75px;
+  margin-top: 50px;
 }
 footer {
   left: 0;
   bottom: 0;
   width: 100%;
 }
+.estrella{
+  width: 30px;
+  display: inline;
+  margin: 1px;
+}
 #origen{
   width: 400px;
   position: relative;
-  margin: 0 auto;
+  left: 100%;
+  top: -12%;
+  margin-right: 100px;  
 }
 body {
   margin: 0;
